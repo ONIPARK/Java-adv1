@@ -9,9 +9,9 @@ public class ThreadStateMain {
         log("myThread.state1 = " + thread.getState()); // NEW
         log("myThread.start()");
         thread.start();
-        Thread.sleep(1000);
+        Thread.sleep(1000); // myThread Sleep を mainThread で確認するため
         log("myThread.state3 = " + thread.getState()); // TIMED_WAITING
-        Thread.sleep(4000);
+        Thread.sleep(4000); // myThread をローグで確認するため ４秒眠らせる
         log("myThread.state5 = " + thread.getState()); // TERMINATED
         log("end");
     }
