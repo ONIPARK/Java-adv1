@@ -23,7 +23,7 @@ public class ThreadStopMain2 {
             try {
                 while (true) {
                     log("作業中");
-                    Thread.sleep(3000);
+                    Thread.sleep(3000); // スレッドが待機状態になるコードに出くわすと InterruptedException が発生する
                 }
             } catch (InterruptedException e) {
                 log("work スレッド Interrupt 状態 2 = " + Thread.currentThread().isInterrupted());
