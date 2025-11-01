@@ -42,11 +42,13 @@ public class MyPrinterV2 {
                     String job = jobQueue.poll(); // ② ジョブキューに作業がある場合、作業を取り出す
                     log("出力開始: " + job + ", 待機文書: " + jobQueue);
                     Thread.sleep(3000);
+                    log("プリンター出力");
 
                 } catch (InterruptedException e) {
                     log("インタラプト！");
-                    log("プリンター終了");
+                    break;
                 }
+                log("プリンター終了");
             }
         }
 
