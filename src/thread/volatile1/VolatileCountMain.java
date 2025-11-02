@@ -3,7 +3,7 @@ package thread.volatile1;
 import static util.MyLogger.log;
 import static util.ThreadUtils.sleep;
 
-public class VolatileFlagMain {
+public class VolatileCountMain {
 
     public static void main(String[] args) {
         MyTask task = new MyTask();
@@ -20,15 +20,21 @@ public class VolatileFlagMain {
 
     static class MyTask implements Runnable {
         //boolean runFlag = true;
+        //long count;
         volatile boolean runFlag = true;
+        volatile long count;
 
         @Override
         public void run() {
-            log("task 開始");
             while (runFlag) {
-                // runFlag が false に変わると脱出
+                count++;
+                // 1億番に1回ごとに出力
+                if (count % 100_000_000 == 0) {
+                    // コメント処理すると...
+                    log("flat = " + runFlag + ", count = " + count + "in while()");
+                }
+                log("flat = " + runFlag + ", count = " + count + "終了");
             }
-            log("task 終了");
         }
     }
 }
