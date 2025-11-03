@@ -8,33 +8,31 @@ public class VolatileCountMain {
     public static void main(String[] args) {
         MyTask task = new MyTask();
         Thread t = new Thread(task, "work");
-        log("runFlag = " + task.runFlag);
         t.start();
 
         sleep(1000);
-        log("runFlag を false に設定することを試み");
-        task.runFlag = false;
-        log("runFlag = " + task.runFlag);
-        log("main 終了");
+
+        task.flag = false;
+        log("flag = " + task.flag + ", count = " + task.count + "in main");
     }
 
     static class MyTask implements Runnable {
-        //boolean runFlag = true;
+        //boolean flag = true;
         //long count;
-        volatile boolean runFlag = true;
+        volatile boolean flag = true;
         volatile long count;
 
         @Override
         public void run() {
-            while (runFlag) {
+            while (flag) {
                 count++;
                 // 1億番に1回ごとに出力
                 if (count % 100_000_000 == 0) {
                     // コメント処理すると...
-                    log("flat = " + runFlag + ", count = " + count + "in while()");
+                    log("flag = " + flag + ", count = " + count + "in while()");
                 }
-                log("flat = " + runFlag + ", count = " + count + "終了");
             }
+            log("flag = " + flag + ", count = " + count + " 終了");
         }
     }
 }
