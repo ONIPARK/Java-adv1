@@ -14,7 +14,7 @@ public class BankAccountV1 implements BankAccount {
 
     @Override
     public boolean withdraw(int amount) {
-        log("取引開始: " + amount + ", 残額: " + balance);
+        log("取引開始: " + getClass().getSimpleName());
 
         log("[ 検証開始 ] 出金額: " + amount + ", 残額: " + balance);
         if (balance < amount) {
